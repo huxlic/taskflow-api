@@ -14,7 +14,7 @@ export const authGuard = (req: Request, _res: Response, next: NextFunction) => {
 		const payload = jwt.verify(token, config.jwtSecret);
 		if (typeof payload !== "object") throw new AppError("Invalid token", 401)
 		if (!payload.id) throw new AppError("Invalid token", 401)
-		req.user = payload.id
+		req.user = payload
 		
 		next()
 	} catch (err) {

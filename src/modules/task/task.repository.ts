@@ -42,5 +42,5 @@ export const findById = async (id: string, userId: string): Promise<Task | undef
 export const deleteOne = async (id: string, userId: string): Promise<boolean> => {
 	const [result] = await db.query<ResultSetHeader>("DELETE FROM tasks WHERE id = ? AND userId = ?", [id, userId])
 	
-	return result.affectedRows === 0;
+	return result.affectedRows === 1;
 }

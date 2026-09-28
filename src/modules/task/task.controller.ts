@@ -36,8 +36,7 @@ export const getTasks = async (_req: Request, res: Response, next: NextFunction)
 }
 
 export const getMyTasks = async (req: Request, res: Response, next: NextFunction) => {
-	const id = req.params.id
-	
+
 	if (!req.user) throw new AppError("Invalid token", 404)
 	
 	const payload = req.user.id
@@ -85,10 +84,11 @@ export const deleteTask = async (req: Request<{ id: string }>, res: Response, ne
 		
 		await taskService.deleteOne(id, payload)
 		
-		res.status(204).json({
+		res.status(200).json({
 			status: "success",
 			message: "Task deleted"
 		})
+		
 	} catch (err) {
 		next(err)
 	}
