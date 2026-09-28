@@ -1,5 +1,5 @@
 import type {ErrorRequestHandler} from "express";
-import {AppError} from "../errors/app-error.ts";
+import {AppError} from "../errors/app-error.js";
 
 export const notFoundHandler = () => {
 	throw new AppError("Seems you got lost.", 404)

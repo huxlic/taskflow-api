@@ -1,6 +1,6 @@
-import app from "./app.ts";
-import {config} from "./config/index.ts";
-import {testConnection} from "./infrastructure/database/connection.ts";
+import app from "./app.js";
+import {config} from "./config/index.js";
+import {testConnection} from "./infrastructure/database/connection.js";
 
 const PORT = config.port;
 

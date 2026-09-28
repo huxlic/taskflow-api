@@ -1,7 +1,7 @@
-import {db} from "../../infrastructure/database/connection.ts";
-import type {User} from "./user.types.ts";
+import {db} from "../../infrastructure/database/connection.js";
+import type {User} from "./user.types.js";
 import type {ResultSetHeader, RowDataPacket} from "mysql2";
-import {DuplicateEntryError} from "../../common/errors/duplicate-entry-error.ts";
+import {DuplicateEntryError} from "../../common/errors/duplicate-entry-error.js";
 
 export const findAll = async (): Promise<User[]> => {
 	const [rows] = await db.query<(User & RowDataPacket)[]>("SELECT id, firstName, lastName, email, password, created_at, updated_at FROM users")
@@ -15,7 +15,7 @@ export const findById = async (id: string): Promise<User | undefined> => {
 
 export const create = async (id: string, input: Omit<User, "id" | "created_at" | "updated_at">): Promise<User> => {
 	try {
-		const {firstName, lastName, email, password} = input
+		const {firstName, lastName, email, password} = input;
 		const [result] = await db.query<ResultSetHeader>("INSERT INTO users (id, firstName, lastName, email, password) values (?, ?, ?, ?, ?)", [id, firstName, lastName, email, password]);
 		
 		if (result.affectedRows === 0) throw new Error("Insert failed");
@@ -28,4 +28,9 @@ export const create = async (id: string, input: Omit<User, "id" | "created_at" |
 	if (!user) throw new Error("User not found after insert")
 	
 	return user;
+}
+
+export const findByEmail = async (email: string): Promise<User | undefined> => {
+	const [rows] = await db.query<(User & RowDataPacket)[]>("SELECT id, firstName, lastName, email, password, created_at, updated_at FROM users WHERE email = ?", [email])
+	return rows[0]
 }

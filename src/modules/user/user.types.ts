@@ -7,3 +7,5 @@ export type User = {
 	created_at: string;
 	updated_at: string;
 }
+
+export type PublicUser = Omit<User, "password">
