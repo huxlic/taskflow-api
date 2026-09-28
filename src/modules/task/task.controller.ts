@@ -36,12 +36,11 @@ export const getTasks = async (_req: Request, res: Response, next: NextFunction)
 }
 
 export const getMyTasks = async (req: Request, res: Response, next: NextFunction) => {
-
-	if (!req.user) throw new AppError("Invalid token", 404)
-	
-	const payload = req.user.id
-	
 	try {
+		if (!req.user) throw new AppError("Invalid token", 404)
+		
+		const payload = req.user.id
+		
 		const tasks = await taskService.getMine(payload)
 		
 		res.status(200).json({
