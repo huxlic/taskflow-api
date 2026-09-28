@@ -10,14 +10,15 @@ export const authGuard = (req: Request, _res: Response, next: NextFunction) => {
 	const token = authHeader.split(" ")[1];
 	if (!token) throw new AppError("No token provided", 400)
 	
-	const payload = jwt.verify(token, config.jwtSecret);
-	if (typeof payload !== "object") throw new AppError("Invalid token", 401)
-	if (!payload.id) throw new AppError("Invalid token", 401)
-	
-	const id = payload.id
-	if (!id) throw new AppError("Invalid token", 401)
-	
 	try {
+		const payload = jwt.verify(token, config.jwtSecret);
+		if (!payload) throw new AppError("Invalid token", 401)
+		if (typeof payload !== "object") throw new AppError("Invalid token", 401)
+		if (!payload.id) throw new AppError("Invalid token", 401)
+		
+		const id = payload.id
+		if (!id) throw new AppError("Invalid token", 401)
+		
 		req.user = {id: id}
 		
 		next()
