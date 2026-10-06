@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="color-scheme" content="light dark" />
+	<meta name="supported-color-schemes" content="light dark" />
+	<title>Verify your email</title>
+	<style>
+		@media (max-width: 600px) {
+			.card { padding: 28px 22px !important; }
+			.code { font-size: 30px !important; letter-spacing: 6px !important; }
+		}
+		@media (prefers-color-scheme: dark) {
+			.page { background-color: #0b0f14 !important; }
+			.card { background-color: #151b23 !important; }
+			.title, .brand { color: #f3f4f6 !important; }
+			.body-text { color: #c4cad3 !important; }
+			.muted { color: #8b95a3 !important; }
+			.divider { border-top-color: #263040 !important; }
+		}
+	</style>
+</head>
+<body style="margin:0; padding:0; background-color:#eef1f5;">
+<!-- Inbox preview text -->
+<div style="display:none; max-height:0; overflow:hidden; opacity:0; mso-hide:all;">
+	Your verification code is {{otp}}. It expires in {{expiresInMinutes}} minutes.
+</div>
+
+<table role="presentation" class="page" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#eef1f5;">
+	<tr>
+		<td align="center" style="padding:40px 16px;">
+
+			<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:520px;">
+				<!-- Brand -->
+				<tr>
+					<td style="padding:0 4px 20px 4px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size:18px; font-weight:700; letter-spacing:-0.2px;">
+						<span class="brand" style="color:#111827;">Taskflow</span>
+					</td>
+				</tr>
+
+				<!-- Card -->
+				<tr>
+					<td class="card" style="background-color:#ffffff; border-radius:16px; padding:40px 36px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+
+						<h1 class="title" style="margin:0 0 16px 0; font-size:26px; line-height:32px; font-weight:700; letter-spacing:-0.4px; color:#111827;">
+							Confirm your email address
+						</h1>
+
+						<p class="body-text" style="margin:0 0 8px 0; font-size:16px; line-height:26px; color:#4b5563;">
+							Hi {{name}},
+						</p>
+						<p class="body-text" style="margin:0 0 28px 0; font-size:16px; line-height:26px; color:#4b5563;">
+							Use the code below to finish setting up your account.
+						</p>
+
+						<!-- Code -->
+						<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td align="center" style="background-color:#111827; border-radius:12px; padding:22px 12px;">
+									<span class="code" style="font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:36px; line-height:40px; font-weight:700; letter-spacing:10px; color:#ffffff;">{{otp}}</span>
+								</td>
+							</tr>
+						</table>
+
+						<p class="body-text" style="margin:24px 0 0 0; font-size:15px; line-height:24px; color:#4b5563;">
+							This code expires in <strong>{{expiresInMinutes}} minutes</strong> and works once.
+						</p>
+
+						<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:32px;">
+							<tr>
+								<td class="divider" style="border-top:1px solid #e5e7eb; padding-top:20px; font-size:13px; line-height:20px; color:#6b7280;">
+                      <span class="muted" style="color:#6b7280;">
+                        If you didn't create an account, you can ignore this email. No one can use this code without access to your inbox.
+                      </span>
+								</td>
+							</tr>
+						</table>
+
+					</td>
+				</tr>
+
+				<!-- Footer -->
+				<tr>
+					<td align="center" style="padding:20px 8px 0 8px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size:12px; line-height:18px; color:#8b95a3;">
+						<span class="muted" style="color:#8b95a3;">Sent by Taskflow. This is an automated message, so please don't reply.</span>
+					</td>
+				</tr>
+			</table>
+
+		</td>
+	</tr>
+</table>
+</body>
+</html>
