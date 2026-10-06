@@ -8,5 +8,9 @@ export const config = {
 		password: env.DB_PASSWORD,
 		name: env.DB_NAME
 	},
-	jwtSecret: env.JWT_SECRET,
+	smtp: {
+		user: env.SMTP_USER,
+		pass: env.SMTP_PASS
+	},
+	jwtSecret: env.JWT_SECRET
 }

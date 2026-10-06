@@ -7,6 +7,6 @@ import {authGuard} from "../../common/middleware/auth-guard.ts";
 const router = express.Router();
 
 router.post("/auth/login", validate(loginSchema), loginUser)
-router.post("/auth/request-otp", authGuard, requestOtp)
+router.get("/auth/request-otp/:email", requestOtp)
 
 export default router;

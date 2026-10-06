@@ -6,7 +6,9 @@ const connectionSchema = z.object({
 	DB_USER: z.string().min(1),
 	DB_PASSWORD: z.string().min(1),
 	DB_NAME: z.string().min(1),
-	JWT_SECRET: z.string().min(30)
-})
+	JWT_SECRET: z.string().min(30),
+	SMTP_USER: z.email({message: "Invalid SMTP user email address"}),
+	SMTP_PASS: z.string().min(1)
+});
 
 export const env = connectionSchema.parse(process.env);
