@@ -2,7 +2,7 @@ export interface MailInput {
 	to: string;
 	subject: string;
 	html: string;
-	text?: string;
+	text: string;
 }
 
 export interface SendVerificationEmailInput {

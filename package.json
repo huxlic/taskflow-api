@@ -21,8 +21,10 @@
     "typescript": "^7.0.2"
   },
   "dependencies": {
+    "@types/html-to-text": "^9.0.4",
     "bcrypt": "^6.0.0",
     "handlebars": "^4.7.10",
+    "html-to-text": "^10.0.1",
     "jsonwebtoken": "^9.0.3",
     "mysql2": "^3.24.4",
     "nodemailer": "^10.0.15",
