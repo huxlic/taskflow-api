@@ -1,14 +1,13 @@
-import {transporter} from "./mailer.ts";
+import {sendMail} from "./mailer.ts";
+import path from "node:path";
+import * as fs from "node:fs/promises";
+import Handlebars from "handlebars";
+import type {SendVerificationEmailInput} from "./email.types.ts";
 
-export const sendOtp = async (email: string, firstName: string, otp: string) => {
-	try {
-		const info = await transporter.sendMail({
-			from: '"Hux Team" <oladimejihassan03@gmail.com>',
-			to: email,
-			subject: "Hello",
-			html: `<b>Hello ${firstName}, Your OTP is ${otp}</b>`,
-		});
-	} catch (err) {
-		throw err;
-	}
+export const sendVerificationEmail = async ({to, name, otp, expiresInMinutes}: SendVerificationEmailInput) => {
+	const source = await fs.readFile(path.join(import.meta.dirname, './templates/verify-email.hbs'), "utf8");
+	const template = Handlebars.compile(source);
+	const html = template({name, otp, expiresInMinutes});
+	
+	await sendMail({to, subject: "Verify your email", html})
 }

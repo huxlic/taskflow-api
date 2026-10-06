@@ -10,7 +10,8 @@ export const config = {
 	},
 	smtp: {
 		user: env.SMTP_USER,
-		pass: env.SMTP_PASS
+		pass: env.SMTP_PASS,
+		from: env.SMTP_FROM,
 	},
 	jwtSecret: env.JWT_SECRET
 }

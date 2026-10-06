@@ -24,7 +24,7 @@ export const requestOtp = async (email: string | undefined) => {
 	
 	const otp = generateOtp();
 	try {
-		await EmailService.sendOtp(user.email, user.firstName, otp);
+		await EmailService.sendVerificationEmail({to: user.email, name: user.firstName, otp, expiresInMinutes: 10});
 		return otp;
 	} catch (err) {
 		throw new AppError("Failed to send OTP", 500);
