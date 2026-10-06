@@ -4,12 +4,12 @@ import type {ResultSetHeader, RowDataPacket} from "mysql2";
 import {DuplicateEntryError} from "../../common/errors/duplicate-entry-error.js";
 
 export const findAll = async (): Promise<User[]> => {
-	const [rows] = await db.query<(User & RowDataPacket)[]>("SELECT id, firstName, lastName, email, password, created_at, updated_at FROM users")
+	const [rows] = await db.query<(User & RowDataPacket)[]>("SELECT id, firstName, lastName, email, password, isVerified, created_at, updated_at FROM users")
 	return rows;
 }
 
 export const findById = async (id: string): Promise<User | undefined> => {
-	const [rows] = await db.query<(User & RowDataPacket)[]>("SELECT id, firstName, lastName, email, password, created_at, updated_at FROM users WHERE id = ?", [id])
+	const [rows] = await db.query<(User & RowDataPacket)[]>("SELECT id, firstName, lastName, email, password, isVerified, created_at, updated_at FROM users WHERE id = ?", [id])
 	return rows[0]
 }
 
@@ -31,6 +31,6 @@ export const create = async (id: string, input: Omit<User, "id" | "created_at" |
 }
 
 export const findByEmail = async (email: string): Promise<User | undefined> => {
-	const [rows] = await db.query<(User & RowDataPacket)[]>("SELECT id, firstName, lastName, email, password, created_at, updated_at FROM users WHERE email = ?", [email])
+	const [rows] = await db.query<(User & RowDataPacket)[]>("SELECT id, firstName, lastName, email, password, isVerified, created_at, updated_at FROM users WHERE email = ?", [email])
 	return rows[0]
 }

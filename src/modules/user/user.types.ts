@@ -4,6 +4,7 @@ export type User = {
 	lastName: string;
 	email: string;
 	password: string;
+	isVerified: boolean;
 	created_at: string;
 	updated_at: string;
 }
