@@ -7,6 +7,7 @@ import type {SendVerificationEmailInput} from "./email.types.ts";
 
 export const sendVerificationEmail = async ({to, name, otp, expiresInMinutes}: SendVerificationEmailInput) => {
 	const source = await fs.readFile(path.join(import.meta.dirname, './templates/verify-email.hbs'), "utf8");
+	
 	const template = Handlebars.compile(source);
 	const html = template({name, otp, expiresInMinutes});
 	const text = convert(html, {wordwrap: 130});

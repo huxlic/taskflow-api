@@ -1,5 +1,5 @@
 import type {NextFunction, Request, Response} from "express"
-import * as taskService from "./task.service.js"
+import * as TaskService from "./task.service.js"
 import {AppError} from "../../common/errors/app-error.ts";
 
 export const createTask = async (req: Request, res: Response, next: NextFunction) => {
@@ -8,7 +8,7 @@ export const createTask = async (req: Request, res: Response, next: NextFunction
 		
 		const userId = typeof payload === "object" ? payload.id : payload;
 		
-		const task = await taskService.create({...req.body, userId: userId})
+		const task = await TaskService.create({...req.body, userId: userId})
 		
 		res.status(201).json({
 			status: "success",
@@ -22,7 +22,7 @@ export const createTask = async (req: Request, res: Response, next: NextFunction
 
 export const getTasks = async (_req: Request, res: Response, next: NextFunction) => {
 	try {
-		const tasks = await taskService.getAll();
+		const tasks = await TaskService.getAll();
 		
 		res.status(200).json({
 			status: "success",
@@ -43,7 +43,7 @@ export const getMyTasks = async (req: Request, res: Response, next: NextFunction
 		console.log(payload)
 		
 		
-		const tasks = await taskService.getMine(payload)
+		const tasks = await TaskService.getMine(payload)
 		
 		res.status(200).json({
 			status: "success",
@@ -63,7 +63,7 @@ export const getSingleTask = async (req: Request<{ id: string }>, res: Response,
 	const payload = req.user.id
 	
 	try {
-		const task = await taskService.getById(id, payload);
+		const task = await TaskService.getById(id, payload);
 		
 		res.status(200).json({
 			status: "success",
@@ -83,7 +83,7 @@ export const deleteTask = async (req: Request<{ id: string }>, res: Response, ne
 		
 		const payload = req.user.id
 		
-		await taskService.deleteOne(id, payload)
+		await TaskService.deleteOne(id, payload)
 		
 		res.status(200).json({
 			status: "success",

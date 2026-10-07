@@ -1,11 +1,11 @@
 import type {NextFunction, Request, Response} from "express"
-import * as authService from "./auth.service.js"
+import * as AuthService from "./auth.service.js"
 
 export const loginUser = async (req: Request, res: Response, next: NextFunction) => {
 	try {
 		const {email, password} = req.body
 		
-		const token = await authService.login(email, password)
+		const token = await AuthService.login(email, password)
 		
 		res.header("Auth-token", token)
 		res.status(200).json({
@@ -21,7 +21,7 @@ export const loginUser = async (req: Request, res: Response, next: NextFunction)
 export const requestOtp = async (req: Request<{email: string}>, res: Response, next: NextFunction) => {
 	try {
 		const email = req.params.email;
-		const otp = await authService.requestOtp(email)
+		const otp = await AuthService.requestOtp(email)
 		
 		res.status(200).json({
 			status: "success",
