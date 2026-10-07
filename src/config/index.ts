@@ -13,5 +13,12 @@ export const config = {
 		pass: env.SMTP_PASS,
 		from: env.SMTP_FROM,
 	},
-	jwtSecret: env.JWT_SECRET
+	jwtSecret: env.JWT_SECRET,
+	database: {
+		user: env.DATABASE_USER,
+		password: env.DATABASE_PASSWORD,
+		name: env.DATABASE_NAME,
+		host: env.DATABASE_HOST,
+		port: env.DATABASE_PORT
+	}
 }
