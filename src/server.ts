@@ -2,6 +2,7 @@ import app from "./app.js";
 import {config} from "./config/index.js";
 import {testConnection} from "./infrastructure/database/connection.js";
 import {transporter} from "./infrastructure/email/mailer.ts";
+import {prisma} from "./infrastructure/database/prisma.ts";
 
 const PORT = config.port;
 
